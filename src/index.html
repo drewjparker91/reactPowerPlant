@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="plant.js"></script>
+    <title>Grow Your Plant</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <div class="newPlant">
+            <input id="plant-name" type="text">
+            <button class="btn btn-info">Add Plant</button>
+          </div>
+          <div class="yourPlants">
+            
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9">
+          <div class="currentPlant">
+            <h3 id="currentPlantName"></h3>
+          </div>
+          <div class="grow-buttons">
+            <button class="btn btn-success" id="feed">Add soil</button>
+            <button class="btn btn-success" id="blueFood">Add soil</button>
+            <button class="btn btn-warning" id="growLight">Add light</button>
+            <button class="btn btn-warning" id="light">Add light</button>
+            <button class="btn btn-danger" id="hydrate">add water</button>
+            <button class="btn btn-danger" id="superWater">add water</button>
+            <button class="btn btn-primary" id="show-state">Current Stats</button>
+          </div>
+          <h1>Current Plant's Values</h1>
+          <h3><div id="soil-value">0</div></h3>
+          <h3><div id="light-value">0</div></h3>
+          <h3><div id="water-value">0</div></h3>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
