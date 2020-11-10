@@ -63,11 +63,11 @@ $(document).ready(function() {
   $('#hydrate').click(function() {
     const newState = stateControl(hydrate);
     $('#water-value').text(`Water: ${newState.water}`);
-  }
+  });
   $('#superWater').click(function() {
     const newState = stateControl(superWater);
     $('#water-value').text(`Water: ${newState.water}`);
-  }
+  });
 
 // This function doesn't actually do anything useful in this application - it just demonstrates how we can "look" at the current state (which the DOM is holding anyway). However, students often do need the ability to see the current state without changing it so it's included here for reference.
 
@@ -76,7 +76,7 @@ $(document).ready(function() {
     const currentState = stateControl();
     $('#soil-value').text(`Soil: ${currentState.soil}`);
     $('#light-value').text(`Light: ${currentState.light}`);
-    $('#water-value').text(`Water: ${currentState.water}`)
+    $('#water-value').text(`Water: ${currentState.water}`);
   });
 
   
