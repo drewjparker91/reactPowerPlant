@@ -10,8 +10,9 @@ const storeState = (initialState) => { /// (initialState)
 }
 
 const plantArray = [];
+let currentPlant = 0;
 
-const stateControl = storeState({ soil: 0, water: 0, light: 0});
+const stateControl = storeState(plantArray[currentPlant]);
 
 // This is a function factory. We can easily create more specific functions that alter a plant's soil, water, and light to varying degrees.
 
@@ -23,6 +24,15 @@ const changeState = (prop) => {
     })
   }
 }
+// Add new plant to array
+function newPlant(name) {
+  const plant = {Name: name, soil: 0, water: 0, light: 0};
+  const count = plantArray.length;
+  currentPlant = count;
+  plantArray.push(plant);
+  return `<button class=btn btn-info nextplant value=${count}>${name}</button>`;
+}
+
 
 // We create four functions using our function factory. We could easily create many more.
 
@@ -37,9 +47,23 @@ const growLight = changeState("light")(5);
 
 
 $(document).ready(function() {
-
+  $('#new-plant').click(function() {
+    const newName = $('#plant-name').val();
+    const newhtml = newPlant(newName);
+    $('#yourPlants').append(`<li>${newhtml}</li>`)   
+  })
+  
+  $('.nextPlant').click(function() {
+    currentPlant = $('nextPlant').val();
+    $('#currentPlantName').text(plantArray[currentPlant].Name);
+    const currentState = stateControl();
+    $('#soil-value').text(`Soil: ${currentState.soil}`);
+    $('#light-value').text(`Light: ${currentState.light}`);
+    $('#water-value').text(`Water: ${currentState.water}`);
+  })
 // This function has side effects because we are using jQuery. Manipulating the DOM will always be a side effect. Note that we only use one of our functions to alter soil. You can easily add more.
 
+// Soil
   $('#feed').click(function() {
     const newState = stateControl(feed);
     $('#soil-value').text(`Soil: ${newState.soil}`);
@@ -49,7 +73,7 @@ $(document).ready(function() {
     const newState = stateControl(blueFood);
     $('#soil-value').text(`Soil: ${newState.soil}`);
   });
-
+// Light
   $('#light').click(function() {
     const newState = stateControl(light);
     $('#light-value').text(`Light: ${newState.light}`);
@@ -59,7 +83,7 @@ $(document).ready(function() {
     const newState = stateControl(growLight);
     $('#light-value').text(`Light: ${newState.light}`);
   });
-
+// Water
   $('#hydrate').click(function() {
     const newState = stateControl(hydrate);
     $('#water-value').text(`Water: ${newState.water}`);
